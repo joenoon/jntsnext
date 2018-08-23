@@ -1,0 +1,6 @@
+projects:
+  app:
+    schemaPath: server/schema/ro.schema.graphql
+    extensions:
+      endpoints:
+        default: http://localhost:3000/graphql

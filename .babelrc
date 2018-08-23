@@ -1,0 +1,63 @@
+{
+  "presets": [
+    "@babel/react",
+    "@babel/typescript",
+    ["@babel/env", {"loose": true, "useBuiltIns": "entry"}]
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose" : true }],
+    ["@babel/plugin-transform-runtime", {"helpers": false, "regenerator": true}],
+    ["relay", { "schema": "src/data/schema.graphql", "artifactDirectory": "./client/__generated__" }]
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        [
+          "next",
+          {
+            "debug": false,
+            "useBuiltins": "entry"
+          }
+        ],
+        "@zeit/next-typescript/babel"
+      ],
+      "plugins": [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose" : true }],
+        "import-graphql",
+        ["react-native-web", { "commonjs": true }],
+        "styled-jsx/babel"
+      ]
+    },
+    "production": {
+      "presets": [
+        [
+          "next",
+          {
+            "useBuiltins": "entry"
+          }
+        ],
+        "@zeit/next-typescript/babel"
+      ],
+      "plugins": [
+        "import-graphql",
+        ["react-native-web", { "commonjs": true }],
+        "styled-jsx/babel"
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "next",
+          {
+            "debug": false,
+            "useBuiltins": "entry",
+            "modules": "commonjs"
+          }
+        ],
+        "@zeit/next-typescript/babel"
+      ]
+    }
+  }
+}

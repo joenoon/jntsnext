@@ -1,0 +1,20 @@
+{
+  schema: {
+    files: 'server/schema/ro.schema.graphql',
+  },
+  query: {
+    files: [
+      {
+        match: 'queries/*.graphql',
+        validate: {
+          extends: "gql-rules-query",
+          rules: {
+            KnownFragmentNames: "off",
+            NoUnusedFragments: "off"
+          }
+        },
+        parser: 'QueryParser'
+      }
+    ]
+  }
+}

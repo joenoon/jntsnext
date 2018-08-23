@@ -1,0 +1,84 @@
+input CreateProjectInput {
+  name: String!
+}
+
+type CreateProjectPayload {
+  viewer: Viewer!
+  project: Project
+  errors: String
+}
+
+input LoginWithTokenInput {
+  auth_token: String!
+}
+
+type LoginWithTokenPayload {
+  viewer: Viewer!
+  errors: String
+}
+
+type LogoutPayload {
+  viewer: Viewer!
+}
+
+type Mutation {
+  createProject(input: CreateProjectInput!): CreateProjectPayload
+  loginWithToken(input: LoginWithTokenInput!): LoginWithTokenPayload
+  logout: LogoutPayload
+  requestCode(input: RequestCodeInput!): RequestCodePayload
+  requestToken(input: RequestTokenInput!): RequestTokenPayload
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Project {
+  id: ID!
+  name: String
+}
+
+type ProjectConnection {
+  pageInfo: PageInfo!
+  edges: [ProjectEdge]
+  totalCount: Int!
+}
+
+type ProjectEdge {
+  node: Project
+  cursor: String!
+}
+
+type Query {
+  viewer: Viewer!
+}
+
+input RequestCodeInput {
+  email: String
+}
+
+type RequestCodePayload {
+  code_token: String
+  errors: String
+}
+
+input RequestTokenInput {
+  code_token: String
+  code: String
+}
+
+type RequestTokenPayload {
+  auth_token: String
+  errors: String
+}
+
+type Viewer {
+  id: ID!
+  name: String
+  email: String
+  myProjects(after: String, first: Int, before: String, last: Int): ProjectConnection!
+  otherProjects(after: String, first: Int, before: String, last: Int): ProjectConnection!
+}

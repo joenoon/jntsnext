@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "../production-server/",
+    "lib": [
+      "esnext", "dom", "es2017"
+    ]    
+  },
+  "include": ["**/*.ts"]
+}

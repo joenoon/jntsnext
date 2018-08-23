@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+npm-debug.log
+package.lock
+yarn-error.log
+.idea
+.next
+*.iml
+.node_history
+production-server/
+server/schema/ro.schema.json
